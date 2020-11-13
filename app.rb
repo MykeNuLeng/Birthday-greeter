@@ -9,12 +9,12 @@ class Greeter < Sinatra::Base
 
   post '/data' do
     $person = Person.new(params[:name], params[:bday], params[:month])
-    $person.bday? redirect '/bday'
+    redirect '/bday' if $person.bday?
 
     redirect '/not_bday'
   end
 
-  post '/bday' do
+  get '/bday' do
     erb :bday
   end
 
